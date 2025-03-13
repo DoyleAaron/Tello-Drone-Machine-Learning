@@ -100,7 +100,7 @@ def main():
     number = -1
     battery_status = -1
 
-    tello.move_down(20)
+    # tello.move_down(20)
 
     while True:
         fps = cv_fps_calc.get()

@@ -37,12 +37,17 @@ try:
     tello.move_forward(50)
     time.sleep(sleepy)
 
-    # Rotate 180 degrees
-    tello.rotate_clockwise(180)
+    
+    tello.flip_forward()
     time.sleep(sleepy)
-
-    # Move forward by 50 cm again
-    tello.move_forward(50)
+    
+    tello.flip_back()
+    time.sleep(sleepy)
+    
+    tello.move_back(50)
+    time.sleep(sleepy)
+    
+    tello.land()
     time.sleep(sleepy)
 
 except Exception as e:
