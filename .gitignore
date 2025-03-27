@@ -3,5 +3,4 @@
 *.h5
 *.log
 *.pyc
-/Letters
-/combined_dataset
+/LetterRecognition/combined_dataset
