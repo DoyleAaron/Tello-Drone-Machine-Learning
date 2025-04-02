@@ -1,6 +1,5 @@
 /venv
 *.csv
-*.h5
 *.log
 *.pyc
 /LetterRecognition/combined_dataset
