@@ -1,9 +1,10 @@
 # make drone draw letter 'L' in the air
 
-import cv2 as cv
+import cv2 as cv2
 import numpy as np
 import threading
 import time
+import keyboard
 from djitellopy import Tello
 
 # def draw_L():
@@ -15,6 +16,7 @@ from djitellopy import Tello
 #     # move left
 #     tello.move_left(50)
     
+
 def diagonal_up_right(tello, distance=100, speed=30):
     """
     Moves the drone diagonally up and to the right.
@@ -90,14 +92,39 @@ print(tello.get_battery())
 tello.send_command_without_return("command")
 time.sleep(5)  # Wait for SDK mode
 
-# Take off and wait before moving
-tello.takeoff()
-time.sleep(3)
+# Create dummy OpenCV window for key capture
+cv2.namedWindow("Tello Control")
+cv2.imshow("Tello Control", 255 * np.ones((100, 300), dtype=np.uint8))
+cv2.waitKey(1)
 
-# circle()
+print("[INFO] Press T to take off, L to land, SPACE for EMERGENCY STOP")
 
-tello.land()
+try:
+    while True:
+        key = cv2.waitKey(1) & 0xFF
 
-    
+        if key == ord('t'):
+            print("[INFO] Takeoff")
+            tello.takeoff()
+            time.sleep(2)
 
+        elif key == ord('l'):
+            print("[INFO] Landing")
+            tello.land()
+            time.sleep(2)
 
+        elif key == 32:  # Spacebar
+            print("[EMERGENCY] Landing immediately!")
+            tello.emergency()
+            break
+
+        elif key == ord('q'):
+            print("[INFO] Quit command received.")
+            break
+
+except KeyboardInterrupt:
+    print("[INFO] Interrupted by user.")
+
+finally:
+    tello.end()
+    cv2.destroyAllWindows()
