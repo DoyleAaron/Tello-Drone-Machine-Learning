@@ -1,3 +1,7 @@
+# NOTE: T, X, S and L all work fine. Model is struggling to recognise E and Z but the logic is working perfectly for it
+
+
+
 import cv2
 import numpy as np
 import threading
@@ -53,6 +57,95 @@ def curve_down_right(tello, distance, speed):
     tello.send_rc_control(0, 0, 0, 0)
     time.sleep(distance / speed / 3)
 
+def draw_Z(tello):
+    print("[INFO] Drawing 'Z' in the air...")
+
+    # Go left
+    tello.send_rc_control(-20, 0, 0, 0) 
+    time.sleep(3)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # down right
+    tello.send_rc_control(20,0,-40,0)
+    time.sleep(3)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Go left
+    tello.send_rc_control(-20, 0, 0, 0) 
+    time.sleep(3)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+
+
+def draw_S(tello):
+    print("[INFO] Drawing 'S' in the air...")
+
+    # Go right
+    tello.send_rc_control(20, 0, 0, 0) 
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Drop down
+    tello.send_rc_control(0, 0, -30, 0) 
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Go left
+    tello.send_rc_control(-20, 0, 0, 0) 
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Drop down
+    tello.send_rc_control(0, 0, -30, 0) 
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Go right
+    tello.send_rc_control(20, 0, 0, 0) 
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+def draw_X(tello):
+    print("[INFO] Drawing 'X' in the air...")
+
+    #  up left 
+    tello.send_rc_control(-20,0,40,0)
+    time.sleep(3)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # down right
+    tello.send_rc_control(20,0,-40,0)
+    time.sleep(5)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    #  up left 
+    tello.send_rc_control(-20,0,40,0)
+    time.sleep(3)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    #  up right
+    tello.send_rc_control(20,0,40,0)
+    time.sleep(3)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # down left
+    tello.send_rc_control(-20,0,-40,0)
+    time.sleep(5)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
 def draw_L(tello):
     print("[INFO] Drawing 'L' in the air...")
 
@@ -63,11 +156,82 @@ def draw_L(tello):
     time.sleep(1)
 
     # Move left
-    tello.send_rc_control(-15, 0, 0, 0)  # x = -30 => left
+    tello.send_rc_control(-15, 0, 0, 0)
     time.sleep(2)
     tello.send_rc_control(0, 0, 0, 0)
     time.sleep(1)
 
+def draw_E(tello):
+    print("[INFO] Drawing 'E' in the air...")
+
+    # Move Right
+    tello.send_rc_control(15, 0, 0, 0)
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Drop down
+    tello.send_rc_control(0, 0, -15, 0) 
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Move Left
+    tello.send_rc_control(-15, 0, 0, 0)
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Move Right
+    tello.send_rc_control(15, 0, 0, 0)
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Drop down
+    tello.send_rc_control(0, 0, -15, 0) 
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Move Left
+    tello.send_rc_control(-15, 0, 0, 0)
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Move Right
+    tello.send_rc_control(15, 0, 0, 0)
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+def draw_T(tello):
+    print("[INFO] Drawing 'T' in the air...")
+
+    # Move left
+    tello.send_rc_control(-15, 0, 0, 0)
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Move Right
+    tello.send_rc_control(15, 0, 0, 0)
+    time.sleep(4)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Move left
+    tello.send_rc_control(-15, 0, 0, 0)
+    time.sleep(2)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
+
+    # Move down
+    tello.send_rc_control(0, 0, -30, 0) 
+    time.sleep(4)
+    tello.send_rc_control(0, 0, 0, 0)
+    time.sleep(1)
 
 # ========================
 # FrameGrabber
@@ -112,6 +276,16 @@ def run_letter_model():
 
     l_start_time = None
     l_triggered = False
+    s_start_time = None
+    s_triggered = False
+    x_start_time = None
+    x_triggered = False
+    z_start_time = None
+    z_triggered = False
+    t_start_time = None
+    t_triggered = False
+    e_start_time = None
+    e_triggered = False
 
     try:
         while True:
@@ -135,7 +309,7 @@ def run_letter_model():
                             1, (0, 255, 0), 2)
 
             # Require continuous confident 'L' for 3 seconds
-            if predicted_label == "L" and confidence >= 0.8:
+            if predicted_label == "L" and confidence >= 0.7:
                 if l_start_time is None:
                     l_start_time = time.time()
                 elif not l_triggered and (time.time() - l_start_time) >= 3:
@@ -148,6 +322,72 @@ def run_letter_model():
                 # If it's not confident L anymore, reset the timer completely
                 l_start_time = None
 
+            # Require continuous confident 'L' for 3 seconds
+            if predicted_label == "T" and confidence >= 0.7:
+                if t_start_time is None:
+                    t_start_time = time.time()
+                elif not t_triggered and (time.time() - t_start_time) >= 3:
+                    print("[ACTION] Detected 'T' confidently for 3 seconds. Executing movement...")
+                    draw_T(tello)
+                    tello.land()
+                    t_triggered = True
+                    break
+            else:
+                # If it's not confident L anymore, reset the timer completely
+                t_start_time = None
+
+            # --- Detect 'S' for 3 seconds ---
+            if predicted_label == "S" and confidence >= 0.7:
+                if s_start_time is None:
+                    s_start_time = time.time()
+                elif not s_triggered and (time.time() - s_start_time) >= 3:
+                    print("[ACTION] Detected 'S' confidently for 3 seconds. Executing movement...")
+                    draw_S(tello)
+                    tello.land()
+                    s_triggered = True
+                    break
+            else:
+                s_start_time = None
+
+            # --- Detect 'E' for 3 seconds ---
+            if predicted_label == "E" and confidence >= 0.7:
+                if e_start_time is None:
+                    e_start_time = time.time()
+                elif not e_triggered and (time.time() - e_start_time) >= 3:
+                    print("[ACTION] Detected 'S' confidently for 3 seconds. Executing movement...")
+                    draw_E(tello)
+                    tello.land()
+                    e_triggered = True
+                    break
+            else:
+                e_start_time = None
+
+            # --- Detect 'Z' for 3 seconds ---
+            if predicted_label == "Z" and confidence >= 0.7:
+                if z_start_time is None:
+                    z_start_time = time.time()
+                elif not z_triggered and (time.time() - z_start_time) >= 3:
+                    print("[ACTION] Detected 'Z' confidently for 3 seconds. Executing movement...")
+                    draw_Z(tello)
+                    tello.land()
+                    z_triggered = True
+                    break
+            else:
+                z_start_time = None
+
+            
+            if predicted_label == "X" and confidence >= 0.7:
+                if x_start_time is None:
+                    x_start_time = time.time()
+                elif not x_triggered and (time.time() - x_start_time) >= 3:
+                    print("[ACTION] Detected 'X' confidently for 3 seconds. Executing movement...")
+                    draw_X(tello)
+                    tello.land()
+                    x_triggered = True
+                    break
+            else:
+                # If it's not confident L anymore, reset the timer completely
+                x_start_time = None
 
             top3 = np.argsort(predictions[0])[-3:][::-1]
             print("Top predictions:")
