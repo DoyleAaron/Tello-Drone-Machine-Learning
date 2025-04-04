@@ -332,7 +332,7 @@ def run_letter_model():
                     t_triggered = True
                     break
             else:
-                # If it's not confident L anymore, reset the timer completely
+                # If it's not confident T anymore, reset the timer completely
                 t_start_time = None
 
             # --- Detect 'S' for 3 seconds ---
@@ -385,7 +385,7 @@ def run_letter_model():
                     x_triggered = True
                     break
             else:
-                # If it's not confident L anymore, reset the timer completely
+                # If it's not confident X anymore, reset the timer completely
                 x_start_time = None
 
             top3 = np.argsort(predictions[0])[-3:][::-1]
