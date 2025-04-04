@@ -321,7 +321,7 @@ def run_letter_model():
                 # If it's not confident L anymore, reset the timer completely
                 l_start_time = None
 
-            # Require continuous confident 'L' for 3 seconds
+            # Require continuous confident 'T' for 3 seconds
             if predicted_label == "T" and confidence >= 0.7:
                 if t_start_time is None:
                     t_start_time = time.time()
