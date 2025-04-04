@@ -1,3 +1,7 @@
+# This logic was obtained from ChatGPT and modified to work with the Tello drone.
+# The code captures video from the Tello drone, processes the frames, and uses a pre-trained Keras model to classify letters.
+# The code also displays the classification results on the video stream.
+
 import socket
 import time
 import cv2

@@ -1,6 +1,5 @@
+# The model implementation is extracted into functions but is the logic from our previous file
 # NOTE: T, X, S and L all work fine. Model is struggling to recognise E and Z but the logic is working perfectly for it
-
-
 
 import cv2
 import numpy as np
@@ -58,7 +57,7 @@ def curve_down_right(tello, distance, speed):
     time.sleep(distance / speed / 3)
 
 def draw_Z(tello):
-    print("[INFO] Drawing 'Z' in the air...")
+    print("Drawing 'Z' in the air")
 
     # Go left
     tello.send_rc_control(-20, 0, 0, 0) 
@@ -81,7 +80,7 @@ def draw_Z(tello):
 
 
 def draw_S(tello):
-    print("[INFO] Drawing 'S' in the air...")
+    print("Drawing 'S' in the air")
 
     # Go right
     tello.send_rc_control(20, 0, 0, 0) 
@@ -114,7 +113,7 @@ def draw_S(tello):
     time.sleep(1)
 
 def draw_X(tello):
-    print("[INFO] Drawing 'X' in the air...")
+    print("Drawing 'X' in the air")
 
     #  up left 
     tello.send_rc_control(-20,0,40,0)
@@ -147,7 +146,7 @@ def draw_X(tello):
     time.sleep(1)
 
 def draw_L(tello):
-    print("[INFO] Drawing 'L' in the air...")
+    print("Drawing 'L' in the air")
 
     # Drop down
     tello.send_rc_control(0, 0, -30, 0) 
@@ -162,7 +161,7 @@ def draw_L(tello):
     time.sleep(1)
 
 def draw_E(tello):
-    print("[INFO] Drawing 'E' in the air...")
+    print("Drawing 'E' in the air")
 
     # Move Right
     tello.send_rc_control(15, 0, 0, 0)
@@ -207,7 +206,7 @@ def draw_E(tello):
     time.sleep(1)
 
 def draw_T(tello):
-    print("[INFO] Drawing 'T' in the air...")
+    print("Drawing 'T' in the air")
 
     # Move left
     tello.send_rc_control(-15, 0, 0, 0)
@@ -272,7 +271,7 @@ def centre_crop(img):
     return img[top:top+min_dim, left:left+min_dim]
 
 def run_letter_model():
-    print("[INFO] Running real-time classification. Press 'q' to quit model view.")
+    print("Running real-time classification. Press 'q' to quit model view.")
 
     l_start_time = None
     l_triggered = False
@@ -313,7 +312,7 @@ def run_letter_model():
                 if l_start_time is None:
                     l_start_time = time.time()
                 elif not l_triggered and (time.time() - l_start_time) >= 3:
-                    print("[ACTION] Detected 'L' confidently for 3 seconds. Executing movement...")
+                    print("Detected 'L' confidently for 3 seconds. Executing movement")
                     draw_L(tello)
                     tello.land()
                     l_triggered = True
@@ -327,7 +326,7 @@ def run_letter_model():
                 if t_start_time is None:
                     t_start_time = time.time()
                 elif not t_triggered and (time.time() - t_start_time) >= 3:
-                    print("[ACTION] Detected 'T' confidently for 3 seconds. Executing movement...")
+                    print("Detected 'T' confidently for 3 seconds. Executing movement")
                     draw_T(tello)
                     tello.land()
                     t_triggered = True
@@ -341,7 +340,7 @@ def run_letter_model():
                 if s_start_time is None:
                     s_start_time = time.time()
                 elif not s_triggered and (time.time() - s_start_time) >= 3:
-                    print("[ACTION] Detected 'S' confidently for 3 seconds. Executing movement...")
+                    print("Detected 'S' confidently for 3 seconds. Executing movement")
                     draw_S(tello)
                     tello.land()
                     s_triggered = True
@@ -354,7 +353,7 @@ def run_letter_model():
                 if e_start_time is None:
                     e_start_time = time.time()
                 elif not e_triggered and (time.time() - e_start_time) >= 3:
-                    print("[ACTION] Detected 'S' confidently for 3 seconds. Executing movement...")
+                    print("Detected 'E' confidently for 3 seconds. Executing movement")
                     draw_E(tello)
                     tello.land()
                     e_triggered = True
@@ -367,7 +366,7 @@ def run_letter_model():
                 if z_start_time is None:
                     z_start_time = time.time()
                 elif not z_triggered and (time.time() - z_start_time) >= 3:
-                    print("[ACTION] Detected 'Z' confidently for 3 seconds. Executing movement...")
+                    print("Detected 'Z' confidently for 3 seconds. Executing movement")
                     draw_Z(tello)
                     tello.land()
                     z_triggered = True
@@ -380,7 +379,7 @@ def run_letter_model():
                 if x_start_time is None:
                     x_start_time = time.time()
                 elif not x_triggered and (time.time() - x_start_time) >= 3:
-                    print("[ACTION] Detected 'X' confidently for 3 seconds. Executing movement...")
+                    print("Detected 'X' confidently for 3 seconds. Executing movement")
                     draw_X(tello)
                     tello.land()
                     x_triggered = True
